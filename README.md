@@ -23,6 +23,9 @@ Proctora is an open-source online exam proctoring demo built with Flask, OpenCV,
 
 This repository is best understood as a developer-oriented foundation, not a production-ready proctoring platform. It is useful for prototyping flows, testing device checks, exploring exam-session models, and extending monitoring logic, but it does not yet provide the hardened security, identity verification, audit controls, deployment model, or privacy controls required for real-world high-stakes exams.
 
+> **Note:** This is a polished and upgraded version of the original [Internal_hackathon_NEOPYTES_42](https://github.com/amaanwarsi/Internal_hackathon_NEOPYTES_42) repository.
+
+
 ## Screenshots
 
 | Home | Start | Workspace |
