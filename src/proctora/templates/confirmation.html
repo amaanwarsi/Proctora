@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Completed | Proctora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.min.css') }}">
+</head>
+
+<body>
+    <main class="layout layout--home">
+        <section class="hero hero--home">
+            <div class="hero__copy">
+                <p class="eyebrow">Exam Completed</p>
+                <h1>Your workspace session has been closed successfully.</h1>
+                <p class="lede">
+                    You have exited the secure workspace and reached the confirmation page. Developers can extend this
+                    page with result sync, submission APIs, or post-exam workflows.
+                </p>
+                <div class="hero__actions">
+                    <a class="button" href="{{ url_for('main.index') }}">Return home</a>
+                    <a class="button button--secondary" href="{{ url_for('main.index') }}">Request a new token</a>
+                </div>
+            </div>
+            <div class="hero__card">
+                <h2>Next Steps</h2>
+                <ul>
+                    <li>Store completion metadata</li>
+                    <li>Send submission payloads</li>
+                    <li>Notify invigilator systems</li>
+                    <li>Lock re-entry if required</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

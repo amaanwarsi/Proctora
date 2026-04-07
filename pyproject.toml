@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proctora"
+version = "0.1.0"
+description = "Proctora is an open-source AI proctoring demo built with Flask, OpenCV, MediaPipe, and lightweight monitoring services."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Amaan" }
+]
+keywords = ["flask", "proctoring", "computer-vision", "mediapipe", "opencv"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Framework :: Flask",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+  "Flask>=3.0,<4.0",
+  "mediapipe>=0.10,<0.11",
+  "numpy>=1.26,<3.0",
+  "opencv-python>=4.10,<5.0",
+  "PyGetWindow>=0.0.9,<0.1",
+  "sounddevice>=0.4.7,<0.5",
+  "python-dotenv>=1.0,<2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0,<9.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["proctora*"]
+
+[tool.setuptools.package-data]
+proctora = ["templates/*.html", "static/*.css", "static/*.js", "static/src/*.css", "static/src/*.js"]

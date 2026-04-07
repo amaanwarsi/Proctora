@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proctora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.min.css') }}">
+</head>
+
+<body>
+    <main class="layout layout--home">
+        <section class="hero hero--home">
+            <div class="hero__copy">
+                <p class="eyebrow">Open Source AI Proctoring Demo</p>
+                <h1>Proctora keeps exam work inside a controlled fullscreen workspace.</h1>
+                <p class="lede">
+                    Start from home, enter the secure workspace, and automatically return here if fullscreen mode is
+                    exited.
+                </p>
+                <form class="access-form" action="{{ url_for('main.workspace') }}" method="get">
+                    <label class="access-form__label" for="exam-token">Exam token</label>
+                    <div class="hero__actions hero__actions--form">
+                        <input
+                            class="access-form__input"
+                            id="exam-token"
+                            name="token"
+                            type="text"
+                            placeholder="Enter exam token"
+                            autocomplete="off"
+                            required>
+                        <button class="button button--button" type="submit" data-enter-workspace>Open workspace</button>
+                    </div>
+                </form>
+                <div class="hero__actions">
+                    <a class="button button--secondary" href="{{ url_for('main.health') }}">Health check</a>
+                </div>
+            </div>
+            <div class="hero__card">
+                <section id="fullscreen-warning" class="warning-banner" hidden aria-live="polite">
+                    <div class="warning-banner__head">
+                        <p class="eyebrow">Warning</p>
+                        <span id="fullscreen-warning-count" class="warning-banner__count">0</span>
+                    </div>
+                    <h2>Fullscreen mode was exited.</h2>
+                    <p id="fullscreen-warning-message" class="warning-banner__text"></p>
+                </section>
+                <h2>Monitors</h2>
+                <ul>
+                    <li>Face presence and multiple faces</li>
+                    <li>Head movement thresholding</li>
+                    <li>Window switching detection</li>
+                    <li>Microphone noise spikes</li>
+                    <li>Fullscreen exit tracking</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.min.js') }}"></script>
+</body>
+
+</html>

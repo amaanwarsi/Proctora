@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proctora Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.min.css') }}">
+</head>
+
+<body class="workspace-page">
+    <main class="layout layout--workspace">
+        <section id="fullscreen-gate" class="fullscreen-gate">
+            <div class="fullscreen-gate__card">
+                <p class="eyebrow">Secure Workspace</p>
+                <h1>Enter fullscreen to begin.</h1>
+                <p class="lede">
+                    The exam workspace stays hidden until fullscreen mode is active. Exiting fullscreen returns you to
+                    home and increments the fullscreen-exit warning count.
+                </p>
+                <div class="hero__actions">
+                    <button class="button button--button" type="button" id="enter-fullscreen">Enter fullscreen</button>
+                    <a class="button button--secondary" href="{{ url_for('main.index') }}">Back home</a>
+                </div>
+                <p id="fullscreen-error" class="panel__text" hidden></p>
+            </div>
+        </section>
+
+        <section class="workspace workspace--hidden" id="workspace" tabindex="-1" aria-hidden="true">
+            <div class="panel--workspace-bar">
+                <div class="panel__header no-bottom-margin">
+                    <h2>{{ exam_name or 'Proctora' }}</h2>
+                    <div class="panel__actions">
+                        <button class="button button--secondary button--button button--nav"
+                            type="button" id="quit-exam">
+                            Quit
+                        </button>
+                        <button class="button button--button button--nav" type="button" id="done-exam">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="workspace__exam">
+                <div class="panel panel--exam">
+                    <div class="panel__header">
+                        <h2>Exam Surface</h2>
+                        <span class="pill">Embedded URL</span>
+                    </div>
+                    <iframe title="Exam" src="{{ exam_url }}" loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+                </div>
+            </div>
+
+
+            <aside class="workspace__sidebar">
+                <div class="panel">
+                    <div class="panel__header">
+                        <h2>Live camera</h2>
+                        <span class="pill">Webcam</span>
+                    </div>
+                    <img id="video-feed" src="{{ url_for('main.video_feed') }}" alt="Live webcam feed for proctoring">
+                    <p class="panel__text">
+                        If the feed does not appear, check your camera permissions or set `PROCTORA_CAMERA_INDEX`.
+                    </p>
+                </div>
+
+                <div class="panel">
+                    <div class="panel__header">
+                        <h2>Alerts</h2>
+                        <div class="panel__actions">
+                            <span class="pill">Counts</span>
+                        </div>
+                    </div>
+                    <ul id="alerts" class="alerts"></ul>
+                </div>
+            </aside>
+        </section>
+
+        <div id="done-modal" class="modal" hidden aria-hidden="true">
+            <div class="modal__backdrop" data-close-modal></div>
+            <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="done-modal-title">
+                <p class="eyebrow">Finish Exam</p>
+                <h2 id="done-modal-title">Are you sure you want to submit and leave the workspace?</h2>
+                <p class="panel__text">
+                    Choosing yes will close the fullscreen session and take you to the exam completion page.
+                </p>
+                <div class="hero__actions">
+                    <button class="button button--button" type="button" id="confirm-done">Yes, finish exam</button>
+                    <button class="button button--secondary button--button" type="button" data-close-modal>No,
+                        continue</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="quit-modal" class="modal" hidden aria-hidden="true">
+            <div class="modal__backdrop" data-close-quit-modal></div>
+            <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="quit-modal-title">
+                <p class="eyebrow">Leave Workspace</p>
+                <h2 id="quit-modal-title">Are you sure you want to quit the exam workspace?</h2>
+                <p class="panel__text">
+                    Choosing quit will close the fullscreen session and take you to the confirmation page.
+                </p>
+                <div class="hero__actions">
+                    <button class="button button--danger button--button" type="button" id="confirm-quit">Yes, quit
+                        now</button>
+                    <button class="button button--secondary button--button" type="button" data-close-quit-modal>No, stay
+                        here</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.min.js') }}"></script>
+</body>
+
+</html>

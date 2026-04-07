@@ -1,0 +1,8 @@
+Flask>=3.0,<4.0
+mediapipe>=0.10,<0.11
+numpy>=1.26,<3.0
+opencv-python>=4.10,<5.0
+PyGetWindow>=0.0.9,<0.1
+sounddevice>=0.4.7,<0.5
+python-dotenv>=1.0,<2.0
+pytest>=8.0,<9.0
